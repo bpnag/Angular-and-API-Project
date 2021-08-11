@@ -11,5 +11,6 @@ namespace TechnicalExercise.Repos.Triangle
     {
         IEnumerable<Coordinates> FetchCoordinatesByRC(CreateTriangleByRC createTriangleByRC);
         RowColumn FetchRCByCoordinates(GetRCByCoordinates getRCByCoordinates);
+        bool AreCoordinatesformTriangle(GetRCByCoordinates getRCByCoordinates);
     }
 }

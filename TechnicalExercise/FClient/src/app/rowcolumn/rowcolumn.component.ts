@@ -18,7 +18,9 @@ export class RowcolumnComponent implements OnInit {
   column:number;
   list2:Array<Coordinates>;
   RowList:Array<string>;
-  dropdown:boolean;
+  dropdown: boolean;
+  Serror: any;
+  TextError: string;
   constructor(private serv:APICallServiceService) { }
 
   ngOnInit(): void {
@@ -26,18 +28,30 @@ export class RowcolumnComponent implements OnInit {
      this.coordinates.TopCoordinates=new Coordinates(0,0);
      this.coordinates.MidCoordinates=new Coordinates(0,0);
      this.coordinates.BottomCoordinates=new Coordinates(0,0);
-     this.rowColumn=new RowColumn('A',1);
+    this.rowColumn = new RowColumn('A', 1);
+    this.TextError = null;
+    this.Serror = null;
   }
 
-  FetchRowAndColumn(){
-    this.serv.APIFetchRowAndColumn(this.coordinates).subscribe(args=>{
-         this.rowColumn=args as RowColumn;
-         this.row=this.rowColumn.Row;
-         this.column=this.rowColumn.Column;
-    })
+  FetchRowAndColumn() {
+    this.row = null;
+    if (this.Validateentry()) {
+      this.serv.APIFetchRowAndColumn(this.coordinates).subscribe(args => {
+        this.rowColumn = args as RowColumn;
+        this.row = this.rowColumn.Row;
+        this.column = this.rowColumn.Column;
+        this.Serror = null;
+        this.TextError = null;
+      },
+        error => {
+          this.Serror = error.error.Message;
+        });
+    }
 }
 
-  keyPressNumbers(event){
+  keyPressNumbers(event) {
+    this.TextError = null;
+    this.Serror = null;
     var charCode=(event.which)?event.which:event.keyCode;
     if(charCode<48 ||charCode>57)
     {
@@ -49,4 +63,19 @@ export class RowcolumnComponent implements OnInit {
     }
   }
 
+  Validateentry() {
+    if (this.coordinates.TopCoordinates.X > 100 || this.coordinates.TopCoordinates.Y>100) {
+      this.TextError = "Top Coordinates should be in the range of 1 - 100";
+      return false;
+    }
+    if (this.coordinates.MidCoordinates.X > 100 || this.coordinates.MidCoordinates.Y >100) {
+      this.TextError = "Angle Coordinates should be in the range of 1 - 100";
+      return false;
+    }
+    if (this.coordinates.BottomCoordinates.X > 100 || this.coordinates.BottomCoordinates.Y > 100) {
+      this.TextError = "Bottom Coordinates should be in the range of 1 - 100";
+      return false;
+    }
+    return true;
+  }
 }

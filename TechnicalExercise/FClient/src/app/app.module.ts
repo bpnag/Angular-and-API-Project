@@ -8,13 +8,15 @@ import {APICallServiceService} from './Services/apicall-service.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RowcolumnComponent } from './rowcolumn/rowcolumn.component';
+import { QuestionComponent } from './question/question.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TriangleComponent,
-    RowcolumnComponent
+    RowcolumnComponent,
+    QuestionComponent
   ],
   imports: [
     FormsModule,

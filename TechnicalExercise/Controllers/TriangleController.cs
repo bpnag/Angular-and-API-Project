@@ -23,12 +23,12 @@ namespace TechnicalExercise.Controllers
             try
             {
                 IEnumerable<Coordinates> coordinates = new List<Coordinates>();
-                if (createTriangleByRC != null)
+                if (createTriangleByRC == null)
                 {
                     coordinates = this.Triangle.FetchCoordinatesByRC(createTriangleByRC);
                     return Request.CreateResponse(HttpStatusCode.OK, coordinates);
                 }
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error");
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error sorry!!");
             }
             catch (Exception ex)
             {
@@ -44,8 +44,12 @@ namespace TechnicalExercise.Controllers
             {
                 if (getRCByCoordinates != null)
                 {
-                    var rowColumn = this.Triangle.FetchRCByCoordinates(getRCByCoordinates);
-                    return Request.CreateResponse(HttpStatusCode.OK, rowColumn);
+                    if (this.Triangle.AreCoordinatesformTriangle(getRCByCoordinates))
+                    {
+                        var rowColumn = this.Triangle.FetchRCByCoordinates(getRCByCoordinates);
+                        return Request.CreateResponse(HttpStatusCode.OK, rowColumn);
+                    }
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Coordinates doesnt form Triangle");
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error");
             }

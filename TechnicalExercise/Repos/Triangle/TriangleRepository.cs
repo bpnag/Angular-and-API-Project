@@ -68,5 +68,31 @@ namespace TechnicalExercise.Repos.Triangle
                 throw ex;
             }
         }
+
+        public bool AreCoordinatesformTriangle(GetRCByCoordinates getRCByCoordinates)
+        {
+            try
+            {
+                Coordinates topCo = getRCByCoordinates.Topcoordinates;
+                Coordinates midCo = getRCByCoordinates.Midcoordinates;
+                Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
+
+                double length1, length2;
+                if ((midCo.X == topCo.X && midCo.Y == bottomCo.Y ) || (midCo.X==bottomCo.X && midCo.Y==topCo.Y))
+                {
+                    length1 = Math.Sqrt(Math.Pow(midCo.X - topCo.X, 2) + Math.Pow(midCo.Y - topCo.Y, 2));
+                    length2 = Math.Sqrt(Math.Pow(bottomCo.X - midCo.X, 2) + Math.Pow(bottomCo.Y - midCo.Y, 2));
+                    if (length1 == getRCByCoordinates.CellSize && length2 == getRCByCoordinates.CellSize)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

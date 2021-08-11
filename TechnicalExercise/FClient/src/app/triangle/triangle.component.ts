@@ -18,19 +18,24 @@ export class TriangleComponent implements OnInit {
   column:number;
   list2:Array<Coordinates>;
   RowList:Array<string>;
-  dropdown:boolean;
+  dropdown: boolean;
+  Serror: any;
   constructor(private serv:APICallServiceService) { }
 
   ngOnInit(): void {
      this.triangle.CellSize=10;
      this.triangle.Rowcolumn=new RowColumn('A',1);
-     this.RowList=["A","B","C","D","E","F"];
+     this.RowList=["A","B","C","D","E","F","G"];
   }
 
   FetchCoordinates(){
       this.serv.APIFetchCoordinates(this.triangle).subscribe(args=>{
            this.list2=args as Array<Coordinates>;
-      })
+      },
+        error => {
+          this.Serror = error.error.Message;
+          this.RowList = ["A", "B", "C", "D", "E", "F", "G"];
+        })
   }
 
   keyPressNumbers(event){

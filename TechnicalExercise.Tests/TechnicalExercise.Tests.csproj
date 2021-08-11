@@ -67,6 +67,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Repos\FetchCoordinatesByRCTest.cs" />
+    <Compile Include="Repos\FetchRCByCoordinatesTest.cs" />
+    <Compile Include="Services\BlockCoordinatesTest.cs" />
     <Compile Include="Services\TriangleCoordinatesTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
