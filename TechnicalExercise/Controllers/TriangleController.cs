@@ -16,6 +16,8 @@ namespace TechnicalExercise.Controllers
         {
             this.Triangle = triangle;
         }
+
+        #region API controller to fetch co-ordinates by given row and column
         [Route("api/FetchCoordinates")]
         [HttpPost]
         public HttpResponseMessage FetchCoordinatesByRC([FromBody] CreateTriangleByRC createTriangleByRC)
@@ -35,7 +37,9 @@ namespace TechnicalExercise.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+        #endregion API controller to fetch co-ordinates by given row and column
 
+        #region API controller to fetch row and column by given co-ordinates
         [Route("api/FetchRowAndColumn")]
         [HttpPost]
         public HttpResponseMessage FetchRCByCoordinates([FromBody] GetRCByCoordinates getRCByCoordinates)
@@ -59,5 +63,6 @@ namespace TechnicalExercise.Controllers
 
             }
         }
+        #endregion API controller to fetch row and column by given co-ordinates
     }
 }

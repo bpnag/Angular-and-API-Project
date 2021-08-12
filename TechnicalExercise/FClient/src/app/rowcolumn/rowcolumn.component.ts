@@ -63,6 +63,14 @@ export class RowcolumnComponent implements OnInit {
   }
 
   Validateentry() {
+    if (this.coordinates.CellSize.toString() == "") {
+      this.TextError = "Cell Size is required";
+      return false;
+    }
+    if (this.coordinates.CellSize != 0 && this.coordinates.CellSize > 10) {
+      this.TextError = "Cell Size should be in the range of [1-10]";
+      return false;
+    }
     if (this.coordinates.TopCoordinates.X.toString() == "" || this.coordinates.TopCoordinates.Y.toString() == "") {
       this.TextError = "Top Coordinates are required";
       return false;
@@ -79,11 +87,11 @@ export class RowcolumnComponent implements OnInit {
       this.TextError = "Top Coordinates should be in the range of [0 - 60]";
       return false;
     }
-    if (this.coordinates.MidCoordinates.X > 100 || this.coordinates.MidCoordinates.Y > 100) {
+    if (this.coordinates.MidCoordinates.X > 60 || this.coordinates.MidCoordinates.Y > 60) {
       this.TextError = "Angle Coordinates should be in the range of [0 - 60]";
       return false;
     }
-    if (this.coordinates.BottomCoordinates.X > 100 || this.coordinates.BottomCoordinates.Y > 100) {
+    if (this.coordinates.BottomCoordinates.X > 60 || this.coordinates.BottomCoordinates.Y > 60) {
       this.TextError = "Bottom Coordinates should be in the range of [0 - 60]";
       return false;
     }

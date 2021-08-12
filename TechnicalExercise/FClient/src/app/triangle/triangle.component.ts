@@ -26,13 +26,17 @@ export class TriangleComponent implements OnInit {
   ngOnInit(): void {
      this.triangle.CellSize=10;
      this.triangle.Rowcolumn=new RowColumn('A',1);
-     this.RowList=["A","B","C","D","E","F"];
+    this.RowList = ["A", "B", "C", "D", "E", "F"];
+    this.TextError = null;
+    this.Serror = null;
   }
 
   FetchCoordinates() {
     if (this.Validateentry()) {
       this.serv.APIFetchCoordinates(this.triangle).subscribe(args => {
         this.list2 = args as Array<Coordinates>;
+        this.TextError = null;
+        this.Serror = null;
       },
         error => {
           this.Serror = error.error.Message;
@@ -40,7 +44,9 @@ export class TriangleComponent implements OnInit {
     }
   }
 
-  keyPressNumbers(event){
+  keyPressNumbers(event) {
+    this.TextError = null;
+    this.Serror = null;
     var charCode=(event.which)?event.which:event.keyCode;
     if(charCode<48 ||charCode>57)
     {

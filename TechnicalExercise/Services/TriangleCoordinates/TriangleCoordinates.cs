@@ -9,6 +9,7 @@ namespace TechnicalExercise.Services.TriangleCoordinates
 {
     public class TriangleCoordinates : ITriangleCoordinates
     {
+        #region To calculate even triangle co-ordinates
         public IEnumerable<Coordinates> CalculateEvenTriangleCoordinates(IBlock block)
         {
             List<Coordinates> coordinates = new List<Coordinates>();
@@ -20,7 +21,9 @@ namespace TechnicalExercise.Services.TriangleCoordinates
             }
             return coordinates;
         }
+        #endregion To calculate even triangle co-ordinates
 
+        #region To calculate odd triangle co-ordinates
         public IEnumerable<Coordinates> CalculateOddTriangleCoordinates(IBlock block)
         {
             List<Coordinates> coordinates = new List<Coordinates>();
@@ -32,5 +35,6 @@ namespace TechnicalExercise.Services.TriangleCoordinates
             }
             return coordinates;
         }
+        #endregion To calculate odd triangle co-ordinates
     }
 }
