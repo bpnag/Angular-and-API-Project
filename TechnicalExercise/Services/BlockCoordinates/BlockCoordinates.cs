@@ -8,6 +8,8 @@ namespace TechnicalExercise.Services.BlockCoordinates
 {
     public class BlockCoordinates : IBlockCoordinates
     {
+
+        #region To fetch block co-ordinates by given row and column
         public IBlock GetBlockCoordinates(CreateTriangleByRC createTriangleByRC)
         {
             try
@@ -31,5 +33,6 @@ namespace TechnicalExercise.Services.BlockCoordinates
                 throw ex;
             }
         }
+        #endregion To fetch block co-ordinates by given row and column
     }
 }

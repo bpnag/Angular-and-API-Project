@@ -1,58 +1,74 @@
-
-  <div class="card" style="margin:2%">
-    <div class="card-header">
-      Fetch Triangle Cordinates
-    </div>
-    <img src="../assets/Ref.PNG" alt="image">
-    <img src="../../assets/Ref.PNG" />
-    <div class="card-body">
-      <div class="row">
-        <div class="col-lg-6">
-          <h5 class="card-title">Enter Details</h5>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-2">
-              <label>Cell Size</label>
-            </div>
-            <div class="col-lg-4">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="triangle.CellSize" class="form-control" placeholder="CellSize">
-            </div>
+<div class="card marginCls">
+  <div class="card-header">
+    Fetch Triangle Cordinates
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-6">
+        <h5 class="card-title">Enter Details</h5>
+        <div class="row marginCls">
+          <div class="col-lg-2">
+            <label>Cell Size</label>
           </div>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-2">
-              <label>Row</label>
-            </div>
-            <div class="col-lg-4">
-              <select [(ngModel)]="triangle.Rowcolumn.Row" class="form-select">
-                <option *ngFor="let item of RowList" [value]="item">{{item}}</option>
-              </select>
-            </div>
+          <div class="col-lg-4">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="triangle.CellSize" class="form-control" placeholder="CellSize">
           </div>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-2">
-              <label>Column</label>
-            </div>
-            <div class="col-lg-4">
-              <input type='text' [(ngModel)]="triangle.Rowcolumn.Column" class="form-control" placeholder="Column">
-            </div>
-          </div>
-          <button (click)="FetchCoordinates()" style="margin-top: 2%;" class="btn btn-primary">Submit</button>
         </div>
-        <div class="col-lg-6">
-          <h5>Coordinates are:</h5>
+        <div class="row marginCls">
+          <div class="col-lg-2">
+            <label>Row</label>
+          </div>
+          <div class="col-lg-4">
+            <select [(ngModel)]="triangle.Rowcolumn.Row" class="form-select">
+              <option *ngFor="let item of RowList" [value]="item">{{item}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="row marginCls">
+          <div class="col-lg-2">
+            <label>Column</label>
+          </div>
+          <div class="col-lg-4">
+            <input type='text' [(ngModel)]="triangle.Rowcolumn.Column" class="form-control" placeholder="Column">
+          </div>
+        </div>
+        <div [hidden]="TextError==null" class="alert alert-danger marginCls" role="alert">
+          {{TextError}}
+        </div>
+        <button (click)="FetchCoordinates()" class="btn btn-primary marginCls">Submit</button>
+        <p class="marginCls">Please refer the image <span><a href="#exampleModal" data-toggle="modal">Geometric Layout</a></span> for inputs</p>
+      </div>
+      <div class="col-lg-6">
+        <h5>Coordinates are:</h5>
+        <div [hidden]="Serror==null" class="alert alert-danger" role="alert">
           <label>{{this.Serror}}</label>
-          <div *ngFor="let user of list2">
-            <div class="row">
-              <div class="col-lg-4">
-                <label>X : {{user.X}}</label>
-              </div>
-              <div class="col-lg-4">
-                <label>Y : {{user.Y}}</label>
-              </div>
+        </div>
+        <div class="marginCls" *ngFor="let user of list2">
+          <div class="row">
+            <div class="col-lg-4">
+              <label>X : {{user.X}}</label>
+            </div>
+            <div class="col-lg-4">
+              <label>Y : {{user.Y}}</label>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-
   </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Geometric Layout</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img src="../../../../Scripts/ClientApp/assets/Ref.PNG" width="400" height="300" />
+      </div>
+    </div>
+  </div>
+</div>

@@ -536,6 +536,8 @@
     <Content Include="FClient\tsconfig.json" />
     <Content Include="FClient\tsconfig.spec.json" />
     <Content Include="FClient\tslint.json" />
+    <Content Include="Scripts\ClientApp\assets\Ref2.PNG" />
+    <Content Include="Scripts\ClientApp\assets\Ref3.PNG" />
     <Content Include="Scripts\ClientApp\main.js.map" />
     <Content Include="Scripts\ClientApp\polyfills.js.map" />
     <Content Include="Scripts\ClientApp\runtime.js.map" />

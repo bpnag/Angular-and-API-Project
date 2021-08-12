@@ -17,6 +17,8 @@ namespace TechnicalExercise.Repos.Triangle
             this.Block = block;
             this.TriangleCoordinates = triangleCoordinates;
         }
+
+        #region To fetch co-ordinates by given row and column
         public IEnumerable<Coordinates> FetchCoordinatesByRC(CreateTriangleByRC createTriangleByRC)
         {
             try
@@ -42,7 +44,9 @@ namespace TechnicalExercise.Repos.Triangle
                 throw ex;
             }
         }
+        #endregion To fetch co-ordinates by given row and column
 
+        #region To fetch row and column by given co-ordinates
         public RowColumn FetchRCByCoordinates(GetRCByCoordinates getRCByCoordinates)
         {
             try
@@ -68,7 +72,9 @@ namespace TechnicalExercise.Repos.Triangle
                 throw ex;
             }
         }
+        #endregion To fetch row and column by given co-ordinates
 
+        #region To check given co-ordinates form triangle
         public bool AreCoordinatesformTriangle(GetRCByCoordinates getRCByCoordinates)
         {
             try
@@ -82,7 +88,7 @@ namespace TechnicalExercise.Repos.Triangle
                 {
                     length1 = Math.Sqrt(Math.Pow(midCo.X - topCo.X, 2) + Math.Pow(midCo.Y - topCo.Y, 2));
                     length2 = Math.Sqrt(Math.Pow(bottomCo.X - midCo.X, 2) + Math.Pow(bottomCo.Y - midCo.Y, 2));
-                    if (length1 == getRCByCoordinates.CellSize && length2 == getRCByCoordinates.CellSize)
+                    if (length1 == getRCByCoordinates.CellSize && length2== getRCByCoordinates.CellSize)
                     {
                         return true;
                     }
@@ -94,5 +100,6 @@ namespace TechnicalExercise.Repos.Triangle
                 throw ex;
             }
         }
+        #endregion To check given co-ordinates form triangle
     }
 }

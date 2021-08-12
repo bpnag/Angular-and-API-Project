@@ -15,6 +15,7 @@ namespace TechnicalExercise.Tests.Services
     class TriangleCoordinatesTest
     {
         [Test]
+        [Category("Positive")]
         [Description("Odd Triangle at B:3")]
         public void B3OddTriangle()
         {
@@ -41,6 +42,7 @@ namespace TechnicalExercise.Tests.Services
         }
 
         [Test]
+        [Category("Positive")]
         [Description("Odd Triangle at B:4")]
         public void B4EvenTriangle()
         {
@@ -67,6 +69,7 @@ namespace TechnicalExercise.Tests.Services
         }
 
         [Test]
+        [Category("Positive")]
         [Description("Even Triangle at E:10")]
         public void E10EvenTriangle()
         {
@@ -93,6 +96,7 @@ namespace TechnicalExercise.Tests.Services
         }
 
         [Test]
+        [Category("Positive")]
         [Description("Odd Triangle at F:5")]
         public void F5OddTriangle()
         {
@@ -116,6 +120,40 @@ namespace TechnicalExercise.Tests.Services
             Assert.AreEqual(60, coordinates[1].Y);
             Assert.AreEqual(30, coordinates[2].X);
             Assert.AreEqual(60, coordinates[2].Y);
+        }
+
+        [Test]
+        [Category("Negative")]
+        [Description("Odd Triangle at Null reference")]
+        public void NullOddTriangle()
+        {
+
+            //Setup
+            IBlock nullBlock = null;
+
+            //Action
+            ITriangleCoordinates triangleCoordinates = new TriangleCoordinates();
+            List<Coordinates> coordinates = (List<Coordinates>)triangleCoordinates.CalculateOddTriangleCoordinates(nullBlock);
+
+            //Assertion
+            Assert.AreEqual(0, coordinates.Count);
+        }
+
+        [Test]
+        [Category("Negative")]
+        [Description("Even Triangle at Null reference")]
+        public void NullEvenTriangle()
+        {
+
+            //Setup
+            IBlock nullBlock = null;
+
+            //Action
+            ITriangleCoordinates triangleCoordinates = new TriangleCoordinates();
+            List<Coordinates> coordinates = (List<Coordinates>)triangleCoordinates.CalculateEvenTriangleCoordinates(nullBlock);
+
+            //Assertion
+            Assert.AreEqual(0, coordinates.Count);
         }
     }
 }

@@ -22,7 +22,9 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/assets/Ref.PNG"
+              "src/assets/Ref.PNG",
+              "src/assets/Ref1.PNG",
+              "src/assets/Ref2.PNG"
             ],
             "styles": [
               "src/bootstrap/dist/css/bootstrap.min.css",

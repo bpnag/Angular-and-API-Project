@@ -33,6 +33,7 @@ namespace TechnicalExercise.Tests.Repos
         }
 
         [Test]
+        [Category("Positive")]
         public void CheckFetchRC1()
         {
             //Setup
@@ -49,6 +50,26 @@ namespace TechnicalExercise.Tests.Repos
             //Assertion
             Assert.AreEqual('B', rowColumn.Row);
             Assert.AreEqual(3, rowColumn.Column);
+        }
+
+        [Test]
+        [Category("Positive")]
+        public void CheckFetchRC2()
+        {
+            //Setup
+            GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
+            getRCByCoordinates.CellSize = 10;
+            getRCByCoordinates.Topcoordinates = new Coordinates(10, 10);
+            getRCByCoordinates.Midcoordinates = new Coordinates(20, 10);
+            getRCByCoordinates.Bottomcoordinates = new Coordinates(20, 20);
+
+            //Action
+            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockTriangleCoordinates.Object);
+            RowColumn rowColumn = triangleCoordinates.FetchRCByCoordinates(getRCByCoordinates);
+
+            //Assertion
+            Assert.AreEqual('B', rowColumn.Row);
+            Assert.AreEqual(4, rowColumn.Column);
         }
     }
 }

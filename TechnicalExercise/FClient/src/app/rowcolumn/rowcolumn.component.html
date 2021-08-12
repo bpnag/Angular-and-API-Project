@@ -1,4 +1,4 @@
-<div class="card" style="margin:2%">
+<div class="card marginCls">
   <div class="card-header">
     Fetch Row and Column
   </div>
@@ -6,68 +6,85 @@
     <div class="row">
       <div class="col-lg-6">
         <h5 class="card-title">Enter Details</h5>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-3">
-              <label>Cell Size</label>
-            </div>
-            <div class="col-lg-4">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.CellSize"
-                     class="form-control" placeholder="CellSize">
-            </div>
+        <div class="row marginCls">
+          <div class="col-lg-3">
+            <label>Cell Size</label>
           </div>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-3">
-              <label>Top Coordinates</label>
-            </div>
-            <div class="col-lg-2">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.TopCoordinates.X" class="form-control"
-                     placeholder="X">
-            </div>
-            <div class="col-lg-2">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.TopCoordinates.Y" class="form-control"
-                     placeholder="Y">
-            </div>
+          <div class="col-lg-4">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.CellSize"
+                   class="form-control" placeholder="CellSize">
           </div>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-3">
-              <label>Angle Coordinates</label>
-            </div>
-            <div class="col-lg-2">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.MidCoordinates.X" min="5" max="10" class="form-control"
-                     placeholder="X">
-            </div>
-            <div class="col-lg-2">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.MidCoordinates.Y" class="form-control"
-                     placeholder="Y">
-            </div>
+        </div>
+        <div class="row marginCls">
+          <div class="col-lg-3">
+            <label>Top Coordinates</label>
           </div>
-          <div class="row" style="margin-top: 2%;">
-            <div class="col-lg-3">
-              <label>Bottom Coordinates</label>
-            </div>
-            <div class="col-lg-2">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.BottomCoordinates.X" class="form-control"
-                     placeholder="X">
-            </div>
-            <div class="col-lg-2">
-              <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.BottomCoordinates.Y" class="form-control"
-                     placeholder="Y">
-            </div>
+          <div class="col-lg-2">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.TopCoordinates.X" class="form-control"
+                   placeholder="X">
           </div>
-          <div [hidden]="TextError==null" class="alert alert-danger" role="alert">
-            {{TextError}}
+          <div class="col-lg-2">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.TopCoordinates.Y" class="form-control"
+                   placeholder="Y">
           </div>
-          <input type="submit"  (click)="FetchRowAndColumn()" style="margin-top: 2%;" class="btn btn-primary">
+        </div>
+        <div class="row marginCls">
+          <div class="col-lg-3">
+            <label>Angle Coordinates</label>
+          </div>
+          <div class="col-lg-2">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.MidCoordinates.X" min="5" max="10" class="form-control"
+                   placeholder="X">
+          </div>
+          <div class="col-lg-2">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.MidCoordinates.Y" class="form-control"
+                   placeholder="Y">
+          </div>
+        </div>
+        <div class="row marginCls">
+          <div class="col-lg-3">
+            <label>Bottom Coordinates</label>
+          </div>
+          <div class="col-lg-2">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.BottomCoordinates.X" class="form-control"
+                   placeholder="X">
+          </div>
+          <div class="col-lg-2">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="coordinates.BottomCoordinates.Y" class="form-control"
+                   placeholder="Y">
+          </div>
+        </div>
+        <div [hidden]="TextError==null" class="alert alert-danger marginCls" role="alert">
+          {{TextError}}
+        </div>
+        <input type="submit" (click)="FetchRowAndColumn()" class="btn btn-primary marginCls">
+        <p class="marginCls">Please refer the image <span><a href="#geoModal" data-toggle="modal">Geometric Layout</a></span> for inputs</p>
       </div>
       <div class="col-lg-4">
         <h5>Row and Colum are:</h5>
         <div [hidden]="Serror==null" class="alert alert-danger" role="alert">
           <label>{{this.Serror}}</label>
         </div>
-        <div [hidden]="row==null || row==undefined" style="margin-top: 2%;">
+        <div [hidden]="row==null || row==undefined" class="marginCls">
           <label>Row : {{row}}</label>
           <br>
           <label>Column : {{column}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="geoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Geometric Layout</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="../../../../Scripts/ClientApp/assets/Ref.PNG" width="400" height="300" />
         </div>
       </div>
     </div>

@@ -20,22 +20,24 @@ export class TriangleComponent implements OnInit {
   RowList:Array<string>;
   dropdown: boolean;
   Serror: any;
+  TextError: string;
   constructor(private serv:APICallServiceService) { }
 
   ngOnInit(): void {
      this.triangle.CellSize=10;
      this.triangle.Rowcolumn=new RowColumn('A',1);
-     this.RowList=["A","B","C","D","E","F","G"];
+     this.RowList=["A","B","C","D","E","F"];
   }
 
-  FetchCoordinates(){
-      this.serv.APIFetchCoordinates(this.triangle).subscribe(args=>{
-           this.list2=args as Array<Coordinates>;
+  FetchCoordinates() {
+    if (this.Validateentry()) {
+      this.serv.APIFetchCoordinates(this.triangle).subscribe(args => {
+        this.list2 = args as Array<Coordinates>;
       },
         error => {
           this.Serror = error.error.Message;
-          this.RowList = ["A", "B", "C", "D", "E", "F", "G"];
         })
+    }
   }
 
   keyPressNumbers(event){
@@ -48,6 +50,26 @@ export class TriangleComponent implements OnInit {
     else{
       return true;
     }
+  }
+
+  Validateentry() {
+    if (this.triangle.CellSize.toString() == "") {
+      this.TextError = "Cell Size is required";
+      return false;
+    }
+    if (this.triangle.Rowcolumn.Column.toString() == "") {
+      this.TextError = "Column is required";
+      return false;
+    }
+    if (this.triangle.Rowcolumn.Column > 12 && this.triangle.Rowcolumn.Column!=0) {
+      this.TextError = "Column should be in the range of [1-12]";
+      return false;
+    }
+    if (this.triangle.CellSize != 0 && this.triangle.CellSize > 10) {
+      this.TextError = "Cell Size should be in the range of [1-10]";
+      return false;
+    }
+    return true;
   }
 
 }

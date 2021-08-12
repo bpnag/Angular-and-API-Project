@@ -5,6 +5,7 @@ import { RowcolumnComponent } from './rowcolumn/rowcolumn.component';
 import { QuestionComponent } from './question/question.component';
 
 const routes: Routes = [
+  { path: '', component: QuestionComponent },
   { path: 'triangle', component: TriangleComponent, pathMatch: 'full' },
   { path: 'rowColumn', component: RowcolumnComponent },
   { path: 'question', component: QuestionComponent }
