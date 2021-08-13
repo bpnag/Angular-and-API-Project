@@ -16,9 +16,10 @@ namespace TechnicalExercise.Tests.Services
         [Category("Positive")]
         [TestCase(10, 'C', 5, 20, 20)]
         [TestCase(5, 'B', 6, 10, 5)]
+        [Description("Validating Top left Coordinates of Block")]
         public void CheckTopLeftCoordinateofBlock(int cellSize, char row, int column, int expectedX, int expectedY)
         {
-            //Setup
+            //Arrange
             IBlockCoordinates blockCo = new BlockCoordinates();
             IBlock block = new Block();
             CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
@@ -32,30 +33,13 @@ namespace TechnicalExercise.Tests.Services
         }
 
         [Test]
-        [Category("Negative")]
-        [TestCase(10, 'A', 2, 20, 20)]
-        public void CheckTopLeftCoordinateofBlockNegative(int cellSize, char row, int column, int expectedX, int expectedY)
-        {
-            //Setup
-            IBlockCoordinates blockCo = new BlockCoordinates();
-            IBlock block = new Block();
-            CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
-
-            //Action
-            block = blockCo.GetBlockCoordinates(createTriangleByRC);
-
-            //Assertion
-            Assert.AreNotEqual(block.TopLeftCoordinates.X, expectedX);
-            Assert.AreNotEqual(block.TopLeftCoordinates.Y, expectedY);
-        }
-
-        [Test]
         [Category("Positive")]
         [TestCase(10, 'C', 5, 30, 20)]
         [TestCase(5, 'B', 6, 15, 5)]
+        [Description("Validating Top Right Coordinates of Block")]
         public void CheckTopRightCoordinateofBlock(int cellSize, char row, int column, int expectedX, int expectedY)
         {
-            //Setup
+            //Arrange
             IBlockCoordinates blockCo = new BlockCoordinates();
             IBlock block = new Block();
             CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
@@ -69,30 +53,13 @@ namespace TechnicalExercise.Tests.Services
         }
 
         [Test]
-        [Category("Negative")]
-        [TestCase(10, 'F', 1, 30, 20)]
-        public void CheckTopRightCoordinateofBlockNegative(int cellSize, char row, int column, int expectedX, int expectedY)
-        {
-            //Setup
-            IBlockCoordinates blockCo = new BlockCoordinates();
-            IBlock block = new Block();
-            CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
-
-            //Action
-            block = blockCo.GetBlockCoordinates(createTriangleByRC);
-
-            //Assertion
-            Assert.AreNotEqual(block.TopRightCoordinates.X, expectedX);
-            Assert.AreNotEqual(block.TopRightCoordinates.Y, expectedY);
-        }
-
-        [Test]
         [Category("Positive")]
         [TestCase(10, 'D', 7, 30, 40)]
         [TestCase(5, 'F', 8, 15, 30)]
+        [Description("Validating Bottom Left Coordinates of Block")]
         public void CheckBottomLeftCoordinateofBlock(int cellSize, char row, int column, int expectedX, int expectedY)
         {
-            //Setup
+            //Arrange
             IBlockCoordinates blockCo = new BlockCoordinates();
             IBlock block = new Block();
             CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
@@ -106,30 +73,13 @@ namespace TechnicalExercise.Tests.Services
         }
 
         [Test]
-        [Category("Negative")]
-        [TestCase(5, 'F', 8, 50, 10)]
-        public void CheckBottomLeftCoordinateofBlockNegative(int cellSize, char row, int column, int expectedX, int expectedY)
-        {
-            //Setup
-            IBlockCoordinates blockCo = new BlockCoordinates();
-            IBlock block = new Block();
-            CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
-
-            //Action
-            block = blockCo.GetBlockCoordinates(createTriangleByRC);
-
-            //Assertion
-            Assert.AreNotEqual(block.BottomLeftCoordinates.X, expectedX);
-            Assert.AreNotEqual(block.BottomLeftCoordinates.Y, expectedY);
-        }
-
-        [Test]
         [Category("Positive")]
         [TestCase(10, 'D', 7, 40, 40)]
         [TestCase(5, 'F', 8, 20, 30)]
+        [Description("Validating Bottom Right Coordinates of Block")]
         public void CheckBottomRightCoordinateofBlock(int cellSize, char row, int column, int expectedX, int expectedY)
         {
-            //Setup
+            //Arrange
             IBlockCoordinates blockCo = new BlockCoordinates();
             IBlock block = new Block();
             CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
@@ -144,20 +94,15 @@ namespace TechnicalExercise.Tests.Services
 
         [Test]
         [Category("Negative")]
-        [TestCase(5, 'F', 8, 15, 25)]
-        public void CheckBottomRightCoordinateofBlockNegative(int cellSize, char row, int column, int expectedX, int expectedY)
+        [Description("Checking Null Argument Exception")]
+        public void CheckNullExceptionForBlockCoordinates()
         {
-            //Setup
+            //Arrange
+            CreateTriangleByRC createTriangleByRC = null;
             IBlockCoordinates blockCo = new BlockCoordinates();
-            IBlock block = new Block();
-            CreateTriangleByRC createTriangleByRC = new CreateTriangleByRC { CellSize = cellSize, Rowcolumn = new RowColumn(row, column) };
-
-            //Action
-            block = blockCo.GetBlockCoordinates(createTriangleByRC);
 
             //Assertion
-            Assert.AreNotEqual(block.BottomRightCoordinates.X, expectedX);
-            Assert.AreNotEqual(block.BottomRightCoordinates.Y, expectedY);
+            Assert.Throws<ArgumentNullException>(() => blockCo.GetBlockCoordinates(createTriangleByRC));
         }
     }
 }

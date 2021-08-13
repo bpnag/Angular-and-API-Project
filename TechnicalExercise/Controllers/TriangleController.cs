@@ -25,12 +25,12 @@ namespace TechnicalExercise.Controllers
             try
             {
                 IEnumerable<Coordinates> coordinates = new List<Coordinates>();
-                if (createTriangleByRC != null)
+                if (ModelState.IsValid && createTriangleByRC!=null)
                 {
                     coordinates = this.Triangle.FetchCoordinatesByRC(createTriangleByRC);
                     return Request.CreateResponse(HttpStatusCode.OK, coordinates);
                 }
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error sorry!!");
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Input");
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace TechnicalExercise.Controllers
         {
             try
             {
-                if (getRCByCoordinates != null)
+                if (ModelState.IsValid && getRCByCoordinates != null)
                 {
                     if (this.Triangle.AreCoordinatesformTriangle(getRCByCoordinates))
                     {
@@ -55,7 +55,7 @@ namespace TechnicalExercise.Controllers
                     }
                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Coordinates does not form Triangle");
                 }
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Error sorry!!");
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Input");
             }
             catch (Exception ex)
             {

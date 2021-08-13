@@ -25,9 +25,10 @@ namespace TechnicalExercise.Tests.Repos
             mockTriangleCoordinates = new Mock<ITriangleCoordinates>();
         }
 
-        [Category("Positive")]
         [Test]
-        public void CheckCoordinatesFormTriangle1()
+        [Category("Positive")]
+        [Description("Validating coordinates form triangle by giving odd triangle coordinates")]
+        public void CheckAreCoordinatesFormTriangle1()
         {
             //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
@@ -41,12 +42,12 @@ namespace TechnicalExercise.Tests.Repos
             bool isTrue= triangleCoordinates.AreCoordinatesformTriangle(getRCByCoordinates);
 
             //Assertion
-            Assert.AreEqual(isTrue, true);
+            Assert.IsTrue(isTrue);
         }
 
-        [Category("Negative")]
         [Test]
-        public void CheckCoordinatesFormTriangle2()
+        [Category("Negative")]
+        public void CheckAreCoordinatesFormTriangle2()
         {
             //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
@@ -60,12 +61,12 @@ namespace TechnicalExercise.Tests.Repos
             bool isTrue = triangleCoordinates.AreCoordinatesformTriangle(getRCByCoordinates);
 
             //Assertion
-            Assert.AreEqual(isTrue, false);
+            Assert.IsFalse(isTrue);
         }
 
-        [Category("Negative")]
         [Test]
-        public void CheckCoordinatesFormTriangle3()
+        [Category("Negative")]
+        public void CheckAreCoordinatesFormTriangle3()
         {
             //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
@@ -79,12 +80,13 @@ namespace TechnicalExercise.Tests.Repos
             bool isTrue = triangleCoordinates.AreCoordinatesformTriangle(getRCByCoordinates);
 
             //Assertion
-            Assert.AreEqual(isTrue, false);
+            Assert.IsFalse(isTrue);
         }
 
-        [Category("Positive")]
         [Test]
-        public void CheckCoordinatesFormTriangle4()
+        [Category("Positive")]
+        [Description("Validating coordinates form triangle by giving even triangle coordinates")]
+        public void CheckAreCoordinatesFormTriangle4()
         {
             //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
@@ -98,7 +100,21 @@ namespace TechnicalExercise.Tests.Repos
             bool isTrue = triangleCoordinates.AreCoordinatesformTriangle(getRCByCoordinates);
 
             //Assertion
-            Assert.AreEqual(isTrue, true);
+            Assert.IsTrue(isTrue);
+        }
+
+
+        [Test]
+        [Category("Negative")]
+        [Description("Checking Null Arguement Exception")]
+        public void CheckNullExceptionForForAreCoordinatesFormTriangle()
+        {
+            //Arrange
+            GetRCByCoordinates getRCByCoordinates = null;
+            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockTriangleCoordinates.Object);
+
+            //Assertion
+            Assert.Throws<ArgumentNullException>(() => triangleCoordinates.AreCoordinatesformTriangle(getRCByCoordinates));
         }
     }
 }

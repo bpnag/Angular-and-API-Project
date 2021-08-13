@@ -1,6 +1,6 @@
-<div class="card marginCls">
+<div class="card marginCard">
   <div class="card-header">
-    Fetch Triangle Cordinates
+    Fetch Triangle Coordinates
   </div>
   <div class="card-body">
     <div class="row">
@@ -29,7 +29,7 @@
             <label>Column</label>
           </div>
           <div class="col-lg-4">
-            <input type='text' [(ngModel)]="triangle.Rowcolumn.Column" class="form-control" placeholder="Column">
+            <input type='text' (keypress)="keyPressNumbers($event)" [(ngModel)]="triangle.Rowcolumn.Column" class="form-control required" placeholder="Column">
           </div>
         </div>
         <div [hidden]="TextError==null" class="alert alert-danger marginCls" role="alert">

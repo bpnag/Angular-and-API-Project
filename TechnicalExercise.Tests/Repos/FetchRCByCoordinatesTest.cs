@@ -15,26 +15,20 @@ namespace TechnicalExercise.Tests.Repos
     [TestFixture]
     class FetchRCByCoordinatesTest
     {
-        private Mock<IBlock> mockBlock;
         private Mock<IBlockCoordinates> mockBlockCoordinates;
         private Mock<ITriangleCoordinates> mockTriangleCoordinates;
 
         [SetUp]
         public void Initialize()
         {
-            mockBlock = new Mock<IBlock>();
             mockBlockCoordinates = new Mock<IBlockCoordinates>();
             mockTriangleCoordinates = new Mock<ITriangleCoordinates>();
-
-            mockBlock.Setup(a => a.TopLeftCoordinates).Returns(() => new Coordinates(10, 10));
-            mockBlock.Setup(a => a.BottomLeftCoordinates).Returns(() => new Coordinates(10, 20));
-            mockBlock.Setup(a => a.BottomRightCoordinates).Returns(() => new Coordinates(20, 20));
-            mockBlock.Setup(a => a.TopRightCoordinates).Returns(() => new Coordinates(20, 10));
         }
 
         [Test]
         [Category("Positive")]
-        public void CheckFetchRC1()
+        [Description("Validating row and column by giving even triangle coordinates as input")]
+        public void CheckFetchRCByOddCoordinates()
         {
             //Setup
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
@@ -54,7 +48,8 @@ namespace TechnicalExercise.Tests.Repos
 
         [Test]
         [Category("Positive")]
-        public void CheckFetchRC2()
+        [Description("Validating row and column by giving odd triangle coordinates")]
+        public void CheckFetchRCByEvenCoordinates()
         {
             //Setup
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
@@ -70,6 +65,19 @@ namespace TechnicalExercise.Tests.Repos
             //Assertion
             Assert.AreEqual('B', rowColumn.Row);
             Assert.AreEqual(4, rowColumn.Column);
+        }
+
+        [Test]
+        [Category("Negative")]
+        [Description("Checking Null Arguement Exception")]
+        public void CheckNullExceptionForFetchRCByCoordinates()
+        {
+            //Setup
+            GetRCByCoordinates getRCByCoordinates = null;
+            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockTriangleCoordinates.Object);
+
+            //Assertion
+            Assert.Throws<ArgumentNullException>(() => triangleCoordinates.FetchRCByCoordinates(getRCByCoordinates));
         }
     }
 }

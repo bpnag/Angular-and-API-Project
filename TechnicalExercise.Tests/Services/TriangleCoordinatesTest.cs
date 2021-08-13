@@ -17,11 +17,11 @@ namespace TechnicalExercise.Tests.Services
         [Test]
         [Category("Positive")]
         [Description("Odd Triangle at B:3")]
-        public void B3OddTriangle()
+        public void CheckOddTriangleAtB3()
         {
             var _block = new Mock<IBlock>();
 
-            //Setup
+            //Arrange
             _block.Setup(a => a.TopLeftCoordinates).Returns(() => new Coordinates(10, 10));
             _block.Setup(a => a.BottomLeftCoordinates).Returns(() => new Coordinates(10, 20));
             _block.Setup(a => a.BottomRightCoordinates).Returns(() => new Coordinates(20, 20));
@@ -33,22 +33,22 @@ namespace TechnicalExercise.Tests.Services
 
             //Assertion
             Assert.AreEqual(3, coordinates.Count);
-            Assert.AreEqual(10, coordinates[0].X);
-            Assert.AreEqual(10, coordinates[0].Y);
-            Assert.AreEqual(10, coordinates[1].X);
-            Assert.AreEqual(20, coordinates[1].Y);
-            Assert.AreEqual(20, coordinates[2].X);
-            Assert.AreEqual(20, coordinates[2].Y);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.X, coordinates[0].X);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.Y, coordinates[0].Y);
+            Assert.AreEqual(_block.Object.BottomLeftCoordinates.X, coordinates[1].X);
+            Assert.AreEqual(_block.Object.BottomLeftCoordinates.Y, coordinates[1].Y);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.X, coordinates[2].X);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.Y, coordinates[2].Y);
         }
 
         [Test]
         [Category("Positive")]
-        [Description("Odd Triangle at B:4")]
-        public void B4EvenTriangle()
+        [Description("Even Triangle at B:4")]
+        public void CheckEvenTriangleAtB4()
         {
             var _block = new Mock<IBlock>();
 
-            //Setup
+            //Arrange
             _block.Setup(a => a.TopLeftCoordinates).Returns(() => new Coordinates(10, 10));
             _block.Setup(a => a.BottomLeftCoordinates).Returns(() => new Coordinates(10, 20));
             _block.Setup(a => a.BottomRightCoordinates).Returns(() => new Coordinates(20, 20));
@@ -60,22 +60,22 @@ namespace TechnicalExercise.Tests.Services
 
             //Assertion
             Assert.AreEqual(3, coordinates.Count);
-            Assert.AreEqual(10, coordinates[0].X);
-            Assert.AreEqual(10, coordinates[0].Y);
-            Assert.AreEqual(20, coordinates[1].X);
-            Assert.AreEqual(10, coordinates[1].Y);
-            Assert.AreEqual(20, coordinates[2].X);
-            Assert.AreEqual(20, coordinates[2].Y);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.X, coordinates[0].X);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.Y, coordinates[0].Y);
+            Assert.AreEqual(_block.Object.TopRightCoordinates.X, coordinates[1].X);
+            Assert.AreEqual(_block.Object.TopRightCoordinates.Y, coordinates[1].Y);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.X, coordinates[2].X);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.Y, coordinates[2].Y);
         }
 
         [Test]
         [Category("Positive")]
         [Description("Even Triangle at E:10")]
-        public void E10EvenTriangle()
+        public void CheckEvenTriangleAtE10()
         {
             var _block = new Mock<IBlock>();
 
-            //Setup
+            //Arrange
             _block.Setup(a => a.TopLeftCoordinates).Returns(() => new Coordinates(40, 40));
             _block.Setup(a => a.BottomLeftCoordinates).Returns(() => new Coordinates(40, 50));
             _block.Setup(a => a.BottomRightCoordinates).Returns(() => new Coordinates(50, 50));
@@ -87,22 +87,22 @@ namespace TechnicalExercise.Tests.Services
 
             //Assertion
             Assert.AreEqual(3, coordinates.Count);
-            Assert.AreEqual(40, coordinates[0].X);
-            Assert.AreEqual(40, coordinates[0].Y);
-            Assert.AreEqual(50, coordinates[1].X);
-            Assert.AreEqual(40, coordinates[1].Y);
-            Assert.AreEqual(50, coordinates[2].X);
-            Assert.AreEqual(50, coordinates[2].Y);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.X, coordinates[0].X);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.Y, coordinates[0].Y);
+            Assert.AreEqual(_block.Object.TopRightCoordinates.X, coordinates[1].X);
+            Assert.AreEqual(_block.Object.TopRightCoordinates.Y, coordinates[1].Y);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.X, coordinates[2].X);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.Y, coordinates[2].Y);
         }
 
         [Test]
         [Category("Positive")]
         [Description("Odd Triangle at F:5")]
-        public void F5OddTriangle()
+        public void CheckOddTriangleAtF5()
         {
             var _block = new Mock<IBlock>();
 
-            //Setup
+            //Arrange
             _block.Setup(a => a.TopLeftCoordinates).Returns(() => new Coordinates(20, 50));
             _block.Setup(a => a.BottomLeftCoordinates).Returns(() => new Coordinates(20, 60));
             _block.Setup(a => a.BottomRightCoordinates).Returns(() => new Coordinates(30, 60));
@@ -114,46 +114,40 @@ namespace TechnicalExercise.Tests.Services
 
             //Assertion
             Assert.AreEqual(3, coordinates.Count);
-            Assert.AreEqual(20, coordinates[0].X);
-            Assert.AreEqual(50, coordinates[0].Y);
-            Assert.AreEqual(20, coordinates[1].X);
-            Assert.AreEqual(60, coordinates[1].Y);
-            Assert.AreEqual(30, coordinates[2].X);
-            Assert.AreEqual(60, coordinates[2].Y);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.X, coordinates[0].X);
+            Assert.AreEqual(_block.Object.TopLeftCoordinates.Y, coordinates[0].Y);
+            Assert.AreEqual(_block.Object.BottomLeftCoordinates.X, coordinates[1].X);
+            Assert.AreEqual(_block.Object.BottomLeftCoordinates.Y, coordinates[1].Y);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.X, coordinates[2].X);
+            Assert.AreEqual(_block.Object.BottomRightCoordinates.Y, coordinates[2].Y);
         }
 
         [Test]
         [Category("Negative")]
-        [Description("Odd Triangle at Null reference")]
-        public void NullOddTriangle()
+        [Description("Checking Argument Null Exception for Odd Triangle")]
+        public void CheckNullExceptionForOddTriangle()
         {
 
-            //Setup
+            //Arrange
             IBlock nullBlock = null;
-
-            //Action
             ITriangleCoordinates triangleCoordinates = new TriangleCoordinates();
-            List<Coordinates> coordinates = (List<Coordinates>)triangleCoordinates.CalculateOddTriangleCoordinates(nullBlock);
 
             //Assertion
-            Assert.AreEqual(0, coordinates.Count);
+            Assert.Throws<ArgumentNullException>(() => triangleCoordinates.CalculateOddTriangleCoordinates(nullBlock));
         }
 
         [Test]
         [Category("Negative")]
-        [Description("Even Triangle at Null reference")]
-        public void NullEvenTriangle()
+        [Description("Checking Argument Null Exception for Even Triangle")]
+        public void CheckNullExceptionForEvenTriangle()
         {
 
-            //Setup
+            //Arrange
             IBlock nullBlock = null;
-
-            //Action
             ITriangleCoordinates triangleCoordinates = new TriangleCoordinates();
-            List<Coordinates> coordinates = (List<Coordinates>)triangleCoordinates.CalculateEvenTriangleCoordinates(nullBlock);
 
             //Assertion
-            Assert.AreEqual(0, coordinates.Count);
+            Assert.Throws<ArgumentNullException>(() => triangleCoordinates.CalculateEvenTriangleCoordinates(nullBlock));
         }
     }
 }

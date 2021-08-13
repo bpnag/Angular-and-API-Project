@@ -36,6 +36,10 @@ namespace TechnicalExercise.Repos.Triangle
                         coordinates = this.TriangleCoordinates.CalculateOddTriangleCoordinates(blockCo);
                     }
                 }
+                else
+                {
+                    throw new ArgumentNullException();
+                }
                 return coordinates;
 
             }
@@ -51,21 +55,28 @@ namespace TechnicalExercise.Repos.Triangle
         {
             try
             {
-                Coordinates topCo = getRCByCoordinates.Topcoordinates;
-                Coordinates midCo = getRCByCoordinates.Midcoordinates;
-                Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
+                if (getRCByCoordinates != null)
+                {
+                    Coordinates topCo = getRCByCoordinates.Topcoordinates;
+                    Coordinates midCo = getRCByCoordinates.Midcoordinates;
+                    Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
 
-                int row = midCo.Y / getRCByCoordinates.CellSize;
-                if (topCo.Y == midCo.Y)
-                {
-                    row++;
+                    int row = midCo.Y / getRCByCoordinates.CellSize;
+                    if (topCo.Y == midCo.Y)
+                    {
+                        row++;
+                    }
+                    int column = (midCo.X / getRCByCoordinates.CellSize) * 2;
+                    if (topCo.X == midCo.X)
+                    {
+                        column++;
+                    }
+                    return new RowColumn((char)(row + 64), column);
                 }
-                int column = (midCo.X / getRCByCoordinates.CellSize)*2;
-                if (topCo.X == midCo.X)
+                else
                 {
-                    column++;
+                    throw new ArgumentNullException();
                 }
-                return new RowColumn((char)(row + 64), column);
             }
             catch(Exception ex)
             {
@@ -79,21 +90,28 @@ namespace TechnicalExercise.Repos.Triangle
         {
             try
             {
-                Coordinates topCo = getRCByCoordinates.Topcoordinates;
-                Coordinates midCo = getRCByCoordinates.Midcoordinates;
-                Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
-
-                double length1, length2;
-                if ((midCo.X == topCo.X && midCo.Y == bottomCo.Y ) || (midCo.X==bottomCo.X && midCo.Y==topCo.Y))
+                if (getRCByCoordinates != null)
                 {
-                    length1 = Math.Sqrt(Math.Pow(midCo.X - topCo.X, 2) + Math.Pow(midCo.Y - topCo.Y, 2));
-                    length2 = Math.Sqrt(Math.Pow(bottomCo.X - midCo.X, 2) + Math.Pow(bottomCo.Y - midCo.Y, 2));
-                    if (length1 == getRCByCoordinates.CellSize && length2== getRCByCoordinates.CellSize)
+                    Coordinates topCo = getRCByCoordinates.Topcoordinates;
+                    Coordinates midCo = getRCByCoordinates.Midcoordinates;
+                    Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
+
+                    double length1, length2;
+                    if ((midCo.X == topCo.X && midCo.Y == bottomCo.Y) || (midCo.X == bottomCo.X && midCo.Y == topCo.Y))
                     {
-                        return true;
+                        length1 = Math.Sqrt(Math.Pow(midCo.X - topCo.X, 2) + Math.Pow(midCo.Y - topCo.Y, 2));
+                        length2 = Math.Sqrt(Math.Pow(bottomCo.X - midCo.X, 2) + Math.Pow(bottomCo.Y - midCo.Y, 2));
+                        if (length1 == getRCByCoordinates.CellSize && length2 == getRCByCoordinates.CellSize)
+                        {
+                            return true;
+                        }
                     }
+                    return false;
                 }
-                return false;
+                else
+                {
+                    throw new ArgumentNullException();
+                }
             }
             catch (Exception ex)
             {

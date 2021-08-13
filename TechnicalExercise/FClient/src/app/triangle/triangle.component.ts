@@ -67,11 +67,11 @@ export class TriangleComponent implements OnInit {
       this.TextError = "Column is required";
       return false;
     }
-    if (this.triangle.Rowcolumn.Column > 12 && this.triangle.Rowcolumn.Column!=0) {
+    if (this.triangle.Rowcolumn.Column > 12 || this.triangle.Rowcolumn.Column == 0) {
       this.TextError = "Column should be in the range of [1-12]";
       return false;
     }
-    if (this.triangle.CellSize != 0 && this.triangle.CellSize > 10) {
+    if (this.triangle.CellSize == 0 || this.triangle.CellSize > 10) {
       this.TextError = "Cell Size should be in the range of [1-10]";
       return false;
     }

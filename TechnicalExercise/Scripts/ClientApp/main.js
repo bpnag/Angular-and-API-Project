@@ -176,7 +176,7 @@ class AppComponent {
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };
-AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 19, vars: 0, consts: [[1, "navbar", "navbar-expand-lg", "navbar-light", "bg-light"], ["href", "#", 1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarSupportedContent", "aria-controls", "navbarSupportedContent", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarSupportedContent", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "mr-auto"], [1, "nav-item", "active"], ["href", "/question", 1, "nav-link"], [1, "nav-item", "dropdown"], ["href", "#", "id", "navbarDropdown", "role", "button", "data-toggle", "dropdown", "aria-haspopup", "true", "aria-expanded", "false", 1, "nav-link", "dropdown-toggle"], ["aria-labelledby", "navbarDropdown", 1, "dropdown-menu"], ["href", "/triangle", 1, "dropdown-item"], ["href", "/rowColumn", 1, "dropdown-item"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
+AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: AppComponent, selectors: [["app-root"]], decls: 19, vars: 0, consts: [[1, "navbar", "navbar-expand-lg", "navbar-light", "bg-light", "cardColor"], [1, "navbar-brand"], ["type", "button", "data-toggle", "collapse", "data-target", "#navbarSupportedContent", "aria-controls", "navbarSupportedContent", "aria-expanded", "false", "aria-label", "Toggle navigation", 1, "navbar-toggler"], [1, "navbar-toggler-icon"], ["id", "navbarSupportedContent", 1, "collapse", "navbar-collapse"], [1, "navbar-nav", "mr-auto"], [1, "nav-item", "active"], ["href", "/question", 1, "nav-link"], [1, "nav-item", "dropdown"], ["href", "#", "id", "navbarDropdown", "role", "button", "data-toggle", "dropdown", "aria-haspopup", "true", "aria-expanded", "false", 1, "nav-link", "dropdown-toggle"], ["aria-labelledby", "navbarDropdown", 1, "dropdown-menu"], ["href", "/triangle", 1, "dropdown-item"], ["href", "/rowColumn", 1, "dropdown-item"]], template: function AppComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "nav", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "a", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Geometric Layouts");
@@ -208,7 +208,7 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](18, "router-outlet");
-    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"] });
+    } }, directives: [_angular_router__WEBPACK_IMPORTED_MODULE_1__["RouterOutlet"]], styles: [".cardColor[_ngcontent-%COMP%] {\r\n  background-color: #dee2e6 !important;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxvQ0FBb0M7QUFDdEMiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkQ29sb3Ige1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICNkZWUyZTYgIWltcG9ydGFudDtcclxufVxyXG4iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -413,6 +413,14 @@ class RowcolumnComponent {
         }
     }
     Validateentry() {
+        if (this.coordinates.CellSize.toString() == "") {
+            this.TextError = "Cell Size is required";
+            return false;
+        }
+        if (this.coordinates.CellSize == 0 || this.coordinates.CellSize > 10) {
+            this.TextError = "Cell Size should be in the range of [1-10]";
+            return false;
+        }
         if (this.coordinates.TopCoordinates.X.toString() == "" || this.coordinates.TopCoordinates.Y.toString() == "") {
             this.TextError = "Top Coordinates are required";
             return false;
@@ -429,11 +437,11 @@ class RowcolumnComponent {
             this.TextError = "Top Coordinates should be in the range of [0 - 60]";
             return false;
         }
-        if (this.coordinates.MidCoordinates.X > 100 || this.coordinates.MidCoordinates.Y > 100) {
+        if (this.coordinates.MidCoordinates.X > 60 || this.coordinates.MidCoordinates.Y > 60) {
             this.TextError = "Angle Coordinates should be in the range of [0 - 60]";
             return false;
         }
-        if (this.coordinates.BottomCoordinates.X > 100 || this.coordinates.BottomCoordinates.Y > 100) {
+        if (this.coordinates.BottomCoordinates.X > 60 || this.coordinates.BottomCoordinates.Y > 60) {
             this.TextError = "Bottom Coordinates should be in the range of [0 - 60]";
             return false;
         }
@@ -441,7 +449,7 @@ class RowcolumnComponent {
     }
 }
 RowcolumnComponent.ɵfac = function RowcolumnComponent_Factory(t) { return new (t || RowcolumnComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_apicall_service_service__WEBPACK_IMPORTED_MODULE_2__["APICallServiceService"])); };
-RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RowcolumnComponent, selectors: [["app-rowcolumn"]], decls: 70, vars: 14, consts: [[1, "card", "marginCls"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-3"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "col-lg-2"], ["type", "text", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "placeholder", "Y", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "min", "5", "max", "10", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], ["type", "submit", 1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#geoModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], [1, "marginCls", 3, "hidden"], ["id", "geoModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"]], template: function RowcolumnComponent_Template(rf, ctx) { if (rf & 1) {
+RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RowcolumnComponent, selectors: [["app-rowcolumn"]], decls: 70, vars: 14, consts: [[1, "card", "marginCard"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-3"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "col-lg-2"], ["type", "text", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "placeholder", "Y", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "min", "5", "max", "10", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], ["type", "submit", 1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#geoModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], [1, "marginCls", 3, "hidden"], ["id", "geoModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"]], template: function RowcolumnComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Fetch Row and Column ");
@@ -533,7 +541,7 @@ RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "div", 8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](48, "h5");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](49, "Row and Colum are:");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](49, "Row and Column are:");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](50, "div", 18);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](51, "label");
@@ -601,7 +609,7 @@ RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Row : ", ctx.row, "");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Column : ", ctx.column, "");
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"]], styles: [".marginCls[_ngcontent-%COMP%]{\r\n  margin-top:2%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcm93Y29sdW1uL3Jvd2NvbHVtbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtBQUNmIiwiZmlsZSI6InNyYy9hcHAvcm93Y29sdW1uL3Jvd2NvbHVtbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hcmdpbkNsc3tcclxuICBtYXJnaW4tdG9wOjIlO1xyXG59XHJcbiJdfQ== */"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"]], styles: [".marginCls[_ngcontent-%COMP%]{\r\n  margin-top:2%;\r\n}\r\n\r\n.marginCard[_ngcontent-%COMP%] {\r\n  margin: 2%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvcm93Y29sdW1uL3Jvd2NvbHVtbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsVUFBVTtBQUNaIiwiZmlsZSI6InNyYy9hcHAvcm93Y29sdW1uL3Jvd2NvbHVtbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hcmdpbkNsc3tcclxuICBtYXJnaW4tdG9wOjIlO1xyXG59XHJcblxyXG4ubWFyZ2luQ2FyZCB7XHJcbiAgbWFyZ2luOiAyJTtcclxufVxyXG4iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](RowcolumnComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -677,17 +685,23 @@ class TriangleComponent {
         this.triangle.CellSize = 10;
         this.triangle.Rowcolumn = new _Models_FetchCoordinates__WEBPACK_IMPORTED_MODULE_1__["RowColumn"]('A', 1);
         this.RowList = ["A", "B", "C", "D", "E", "F"];
+        this.TextError = null;
+        this.Serror = null;
     }
     FetchCoordinates() {
         if (this.Validateentry()) {
             this.serv.APIFetchCoordinates(this.triangle).subscribe(args => {
                 this.list2 = args;
+                this.TextError = null;
+                this.Serror = null;
             }, error => {
                 this.Serror = error.error.Message;
             });
         }
     }
     keyPressNumbers(event) {
+        this.TextError = null;
+        this.Serror = null;
         var charCode = (event.which) ? event.which : event.keyCode;
         if (charCode < 48 || charCode > 57) {
             event.preventDefault();
@@ -706,11 +720,11 @@ class TriangleComponent {
             this.TextError = "Column is required";
             return false;
         }
-        if (this.triangle.Rowcolumn.Column > 12 && this.triangle.Rowcolumn.Column != 0) {
+        if (this.triangle.Rowcolumn.Column > 12 || this.triangle.Rowcolumn.Column == 0) {
             this.TextError = "Column should be in the range of [1-12]";
             return false;
         }
-        if (this.triangle.CellSize != 0 && this.triangle.CellSize > 10) {
+        if (this.triangle.CellSize == 0 || this.triangle.CellSize > 10) {
             this.TextError = "Cell Size should be in the range of [1-10]";
             return false;
         }
@@ -718,10 +732,10 @@ class TriangleComponent {
     }
 }
 TriangleComponent.ɵfac = function TriangleComponent_Factory(t) { return new (t || TriangleComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_apicall_service_service__WEBPACK_IMPORTED_MODULE_2__["APICallServiceService"])); };
-TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TriangleComponent, selectors: [["app-triangle"]], decls: 55, vars: 9, consts: [[1, "card", "marginCls"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-2"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "form-select", 3, "ngModel", "ngModelChange"], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", "placeholder", "Column", 1, "form-control", 3, "ngModel", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], [1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#exampleModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], ["class", "marginCls", 4, "ngFor", "ngForOf"], ["id", "exampleModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"], [3, "value"]], template: function TriangleComponent_Template(rf, ctx) { if (rf & 1) {
+TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TriangleComponent, selectors: [["app-triangle"]], decls: 55, vars: 9, consts: [[1, "card", "marginCard"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-2"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "form-select", 3, "ngModel", "ngModelChange"], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", "placeholder", "Column", 1, "form-control", "required", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], [1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#exampleModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], ["class", "marginCls", 4, "ngFor", "ngForOf"], ["id", "exampleModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"], [3, "value"]], template: function TriangleComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Fetch Triangle Cordinates ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Fetch Triangle Coordinates ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 3);
@@ -762,7 +776,7 @@ TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "div", 8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "input", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function TriangleComponent_Template_input_ngModelChange_26_listener($event) { return ctx.triangle.Rowcolumn.Column = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("keypress", function TriangleComponent_Template_input_keypress_26_listener($event) { return ctx.keyPressNumbers($event); })("ngModelChange", function TriangleComponent_Template_input_ngModelChange_26_listener($event) { return ctx.triangle.Rowcolumn.Column = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -835,7 +849,7 @@ TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.Serror);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.list2);
-    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["SelectControlValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵangular_packages_forms_forms_x"]], styles: [".marginCls[_ngcontent-%COMP%] {\r\n  margin-top: 2%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJpYW5nbGUvdHJpYW5nbGUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQWM7QUFDaEIiLCJmaWxlIjoic3JjL2FwcC90cmlhbmdsZS90cmlhbmdsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hcmdpbkNscyB7XHJcbiAgbWFyZ2luLXRvcDogMiU7XHJcbn1cclxuIl19 */"] });
+    } }, directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgModel"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["SelectControlValueAccessor"], _angular_common__WEBPACK_IMPORTED_MODULE_4__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["NgSelectOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵangular_packages_forms_forms_x"]], styles: [".marginCls[_ngcontent-%COMP%] {\r\n  margin-top: 2%;\r\n}\r\n\r\n.marginCard[_ngcontent-%COMP%]{\r\n  margin:2%;\r\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJpYW5nbGUvdHJpYW5nbGUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxTQUFTO0FBQ1giLCJmaWxlIjoic3JjL2FwcC90cmlhbmdsZS90cmlhbmdsZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1hcmdpbkNscyB7XHJcbiAgbWFyZ2luLXRvcDogMiU7XHJcbn1cclxuXHJcbi5tYXJnaW5DYXJke1xyXG4gIG1hcmdpbjoyJTtcclxufVxyXG4iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](TriangleComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{

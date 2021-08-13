@@ -184,6 +184,7 @@
     </Compile>
     <Compile Include="Models\Coordinates.cs" />
     <Compile Include="Models\CreateTriangleByRC.cs" />
+    <Compile Include="Models\ErrorMessage.cs" />
     <Compile Include="Models\GetRCByCoordinates.cs" />
     <Compile Include="Models\RowColumn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

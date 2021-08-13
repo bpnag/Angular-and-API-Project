@@ -19,6 +19,10 @@ namespace TechnicalExercise.Services.TriangleCoordinates
                 coordinates.Add(block.TopRightCoordinates);
                 coordinates.Add(block.BottomRightCoordinates);
             }
+            else
+            {
+                throw new ArgumentNullException();
+            }
             return coordinates;
         }
         #endregion To calculate even triangle co-ordinates
@@ -32,6 +36,10 @@ namespace TechnicalExercise.Services.TriangleCoordinates
                 coordinates.Add(block.TopLeftCoordinates);
                 coordinates.Add(block.BottomLeftCoordinates);
                 coordinates.Add(block.BottomRightCoordinates);
+            }
+            else
+            {
+                throw new ArgumentNullException();
             }
             return coordinates;
         }

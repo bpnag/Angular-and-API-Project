@@ -26,6 +26,10 @@ namespace TechnicalExercise.Services.BlockCoordinates
                     }
                     block = new Block(row,column, createTriangleByRC.CellSize);
                 }
+                else
+                {
+                    throw new ArgumentNullException();
+                }
                 return block;
             }
             catch(Exception ex)

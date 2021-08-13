@@ -67,7 +67,7 @@ export class RowcolumnComponent implements OnInit {
       this.TextError = "Cell Size is required";
       return false;
     }
-    if (this.coordinates.CellSize != 0 && this.coordinates.CellSize > 10) {
+    if (this.coordinates.CellSize == 0 || this.coordinates.CellSize > 10) {
       this.TextError = "Cell Size should be in the range of [1-10]";
       return false;
     }
