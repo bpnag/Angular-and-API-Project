@@ -36,7 +36,7 @@
           {{TextError}}
         </div>
         <button (click)="FetchCoordinates()" class="btn btn-primary marginCls">Submit</button>
-        <p class="marginCls">Please refer the image <span><a href="#exampleModal" data-toggle="modal">Geometric Layout</a></span> for inputs</p>
+        <p class="marginCls">Please refer the image <span><a href="#exampleModal" data-toggle="modal">Geometric Layout</a></span> for inputs.</p>
       </div>
       <div class="col-lg-6">
         <h5>Coordinates are:</h5>
@@ -67,6 +67,9 @@
         </button>
       </div>
       <div class="modal-body">
+        <div class="alert alert-warning" role="alert">
+          Note: Given each row (A-F) has columns (1-12).
+        </div>
         <img src="../../../../Scripts/ClientApp/assets/Ref.PNG" width="400" height="300" />
       </div>
     </div>

@@ -83,16 +83,16 @@ export class RowcolumnComponent implements OnInit {
       this.TextError = "Bottom Coordinates are required";
       return false;
     }
-    if (this.coordinates.TopCoordinates.X > 60 || this.coordinates.TopCoordinates.Y > 60) {
-      this.TextError = "Top Coordinates should be in the range of [0 - 60]";
+    if (this.coordinates.TopCoordinates.X > (this.coordinates.CellSize * 6) || this.coordinates.TopCoordinates.Y > (this.coordinates.CellSize * 6)) {
+      this.TextError = "Top Coordinates are out of range w.r.t given layout";
       return false;
     }
-    if (this.coordinates.MidCoordinates.X > 60 || this.coordinates.MidCoordinates.Y > 60) {
-      this.TextError = "Angle Coordinates should be in the range of [0 - 60]";
+    if (this.coordinates.MidCoordinates.X > (this.coordinates.CellSize * 6) || this.coordinates.MidCoordinates.Y > (this.coordinates.CellSize * 6)) {
+      this.TextError = "Angle Coordinates are out of range w.r.t given layout";
       return false;
     }
-    if (this.coordinates.BottomCoordinates.X > 60 || this.coordinates.BottomCoordinates.Y > 60) {
-      this.TextError = "Bottom Coordinates should be in the range of [0 - 60]";
+    if (this.coordinates.BottomCoordinates.X > (this.coordinates.CellSize * 6) || this.coordinates.BottomCoordinates.Y > (this.coordinates.CellSize * 6)) {
+      this.TextError = "Bottom Coordinates are out of range w.r.t given layout";
       return false;
     }
     return true;

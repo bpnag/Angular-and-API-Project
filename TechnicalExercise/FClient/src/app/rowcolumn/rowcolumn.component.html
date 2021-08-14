@@ -58,7 +58,7 @@
           {{TextError}}
         </div>
         <input type="submit" (click)="FetchRowAndColumn()" class="btn btn-primary marginCls">
-        <p class="marginCls">Please refer the image <span><a href="#geoModal" data-toggle="modal">Geometric Layout</a></span> for inputs</p>
+        <p class="marginCls">Please refer the image <span><a href="#geoModal" data-toggle="modal">Geometric Layout</a></span> for inputs.</p>
       </div>
       <div class="col-lg-4">
         <h5>Row and Column are:</h5>
@@ -84,6 +84,9 @@
           </button>
         </div>
         <div class="modal-body">
+          <div class="alert alert-warning" role="alert">
+            Note: Given each row (A-F) has columns (1-12).
+          </div>
           <img src="../../../../Scripts/ClientApp/assets/Ref.PNG" width="400" height="300" />
         </div>
       </div>

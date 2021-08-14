@@ -433,23 +433,23 @@ class RowcolumnComponent {
             this.TextError = "Bottom Coordinates are required";
             return false;
         }
-        if (this.coordinates.TopCoordinates.X > 60 || this.coordinates.TopCoordinates.Y > 60) {
-            this.TextError = "Top Coordinates should be in the range of [0 - 60]";
+        if (this.coordinates.TopCoordinates.X > (this.coordinates.CellSize * 6) || this.coordinates.TopCoordinates.Y > (this.coordinates.CellSize * 6)) {
+            this.TextError = "Top Coordinates are out of range w.r.t given layout";
             return false;
         }
-        if (this.coordinates.MidCoordinates.X > 60 || this.coordinates.MidCoordinates.Y > 60) {
-            this.TextError = "Angle Coordinates should be in the range of [0 - 60]";
+        if (this.coordinates.MidCoordinates.X > (this.coordinates.CellSize * 6) || this.coordinates.MidCoordinates.Y > (this.coordinates.CellSize * 6)) {
+            this.TextError = "Angle Coordinates are out of range w.r.t given layout";
             return false;
         }
-        if (this.coordinates.BottomCoordinates.X > 60 || this.coordinates.BottomCoordinates.Y > 60) {
-            this.TextError = "Bottom Coordinates should be in the range of [0 - 60]";
+        if (this.coordinates.BottomCoordinates.X > (this.coordinates.CellSize * 6) || this.coordinates.BottomCoordinates.Y > (this.coordinates.CellSize * 6)) {
+            this.TextError = "Bottom Coordinates are out of range w.r.t given layout";
             return false;
         }
         return true;
     }
 }
 RowcolumnComponent.ɵfac = function RowcolumnComponent_Factory(t) { return new (t || RowcolumnComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_apicall_service_service__WEBPACK_IMPORTED_MODULE_2__["APICallServiceService"])); };
-RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RowcolumnComponent, selectors: [["app-rowcolumn"]], decls: 70, vars: 14, consts: [[1, "card", "marginCard"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-3"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "col-lg-2"], ["type", "text", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "placeholder", "Y", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "min", "5", "max", "10", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], ["type", "submit", 1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#geoModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], [1, "marginCls", 3, "hidden"], ["id", "geoModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"]], template: function RowcolumnComponent_Template(rf, ctx) { if (rf & 1) {
+RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RowcolumnComponent, selectors: [["app-rowcolumn"]], decls: 72, vars: 14, consts: [[1, "card", "marginCard"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-3"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "col-lg-2"], ["type", "text", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "placeholder", "Y", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["type", "text", "min", "5", "max", "10", "placeholder", "X", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], ["type", "submit", 1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#geoModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], [1, "marginCls", 3, "hidden"], ["id", "geoModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["role", "alert", 1, "alert", "alert-warning"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"]], template: function RowcolumnComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Fetch Row and Column ");
@@ -536,7 +536,7 @@ RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](45, "Geometric Layout");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, " for inputs");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, " for inputs.");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "div", 8);
@@ -574,7 +574,10 @@ RowcolumnComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](68, "div", 27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](69, "img", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](69, "div", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](70, " Note: Given each row (A-F) has columns (1-12). ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](71, "img", 29);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -644,7 +647,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function TriangleComponent_option_20_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "option", 29);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -732,7 +735,7 @@ class TriangleComponent {
     }
 }
 TriangleComponent.ɵfac = function TriangleComponent_Factory(t) { return new (t || TriangleComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_Services_apicall_service_service__WEBPACK_IMPORTED_MODULE_2__["APICallServiceService"])); };
-TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TriangleComponent, selectors: [["app-triangle"]], decls: 55, vars: 9, consts: [[1, "card", "marginCard"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-2"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "form-select", 3, "ngModel", "ngModelChange"], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", "placeholder", "Column", 1, "form-control", "required", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], [1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#exampleModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], ["class", "marginCls", 4, "ngFor", "ngForOf"], ["id", "exampleModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"], [3, "value"]], template: function TriangleComponent_Template(rf, ctx) { if (rf & 1) {
+TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: TriangleComponent, selectors: [["app-triangle"]], decls: 57, vars: 9, consts: [[1, "card", "marginCard"], [1, "card-header"], [1, "card-body"], [1, "row"], [1, "col-lg-6"], [1, "card-title"], [1, "row", "marginCls"], [1, "col-lg-2"], [1, "col-lg-4"], ["type", "text", "placeholder", "CellSize", 1, "form-control", 3, "ngModel", "keypress", "ngModelChange"], [1, "form-select", 3, "ngModel", "ngModelChange"], [3, "value", 4, "ngFor", "ngForOf"], ["type", "text", "placeholder", "Column", 1, "form-control", "required", 3, "ngModel", "keypress", "ngModelChange"], ["role", "alert", 1, "alert", "alert-danger", "marginCls", 3, "hidden"], [1, "btn", "btn-primary", "marginCls", 3, "click"], [1, "marginCls"], ["href", "#exampleModal", "data-toggle", "modal"], ["role", "alert", 1, "alert", "alert-danger", 3, "hidden"], ["class", "marginCls", 4, "ngFor", "ngForOf"], ["id", "exampleModal", "tabindex", "-1", "role", "dialog", "aria-labelledby", "exampleModalLabel", "aria-hidden", "true", 1, "modal", "fade"], ["role", "document", 1, "modal-dialog"], [1, "modal-content"], [1, "modal-header"], ["id", "exampleModalLabel", 1, "modal-title"], ["type", "button", "data-dismiss", "modal", "aria-label", "Close", 1, "close"], ["aria-hidden", "true"], [1, "modal-body"], ["role", "alert", 1, "alert", "alert-warning"], ["src", "../../../../Scripts/ClientApp/assets/Ref.PNG", "width", "400", "height", "300"], [3, "value"]], template: function TriangleComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, " Fetch Triangle Coordinates ");
@@ -794,7 +797,7 @@ TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](35, "Geometric Layout");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, " for inputs");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, " for inputs.");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "div", 4);
@@ -825,7 +828,10 @@ TriangleComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "div", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](54, "img", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](54, "div", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](55, " Note: Given each row (A-F) has columns (1-12). ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](56, "img", 28);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();

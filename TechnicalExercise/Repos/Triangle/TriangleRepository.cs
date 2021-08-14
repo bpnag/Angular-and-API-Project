@@ -27,7 +27,9 @@ namespace TechnicalExercise.Repos.Triangle
                 IBlock blockCo = new Block();
                 if (createTriangleByRC != null && createTriangleByRC.Rowcolumn != null)
                 {
+                    //To find coordinates of block
                     blockCo = this.Block.GetBlockCoordinates(createTriangleByRC);
+                    //Checks given column is odd or even
                     if (createTriangleByRC.Rowcolumn.Column % 2 == 0)
                     {
                         coordinates = this.TriangleCoordinates.CalculateEvenTriangleCoordinates(blockCo);
@@ -62,11 +64,13 @@ namespace TechnicalExercise.Repos.Triangle
                     Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
 
                     int row = midCo.Y / getRCByCoordinates.CellSize;
+                    //In case of odd triangle
                     if (topCo.Y == midCo.Y)
                     {
                         row++;
                     }
                     int column = (midCo.X / getRCByCoordinates.CellSize) * 2;
+                    //In case of even triangle
                     if (topCo.X == midCo.X)
                     {
                         column++;
@@ -97,8 +101,10 @@ namespace TechnicalExercise.Repos.Triangle
                     Coordinates bottomCo = getRCByCoordinates.Bottomcoordinates;
 
                     double length1, length2;
+                    //Checks coordinates form triangle
                     if ((midCo.X == topCo.X && midCo.Y == bottomCo.Y) || (midCo.X == bottomCo.X && midCo.Y == topCo.Y))
                     {
+                        //Find distance between the points
                         length1 = Math.Sqrt(Math.Pow(midCo.X - topCo.X, 2) + Math.Pow(midCo.Y - topCo.Y, 2));
                         length2 = Math.Sqrt(Math.Pow(bottomCo.X - midCo.X, 2) + Math.Pow(bottomCo.Y - midCo.Y, 2));
                         if (length1 == getRCByCoordinates.CellSize && length2 == getRCByCoordinates.CellSize)

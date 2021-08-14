@@ -33,8 +33,10 @@ namespace TechnicalExercise.Tests.API
 
         [Test]
         [Category("Positive")]
+        [Description("Validating success response code and data in FetchRCByCoordinates API")]
         public void CheckFetchRowColumnAPI1()
         {
+            //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
             getRCByCoordinates.CellSize = 10;
             getRCByCoordinates.Topcoordinates = new Coordinates(10, 10);
@@ -44,12 +46,14 @@ namespace TechnicalExercise.Tests.API
             mockTriangleRepo.Setup(a => a.AreCoordinatesformTriangle(It.IsAny<GetRCByCoordinates>())).Returns(true);
             mockTriangleRepo.Setup(a => a.FetchRCByCoordinates(It.IsAny<GetRCByCoordinates>())).Returns(new RowColumn('B', 4));
 
+            //Action
             triangleController.Validate(getRCByCoordinates);
             var response = triangleController.FetchRCByCoordinates(getRCByCoordinates);
 
             var data = response.Content.ReadAsStringAsync().Result;
             RowColumn rowColumn = JsonConvert.DeserializeObject<RowColumn>(data);
 
+            //Assert
             Assert.AreEqual(response.StatusCode, HttpStatusCode.OK);
             Assert.AreEqual('B', rowColumn.Row);
             Assert.AreEqual(4, rowColumn.Column);
@@ -57,8 +61,10 @@ namespace TechnicalExercise.Tests.API
 
         [Test]
         [Category("Negative")]
+        [Description("Validating bad request response code and whether coordinates form triangle in FetchRCByCoordinates API")]
         public void CheckFetchRowColumnAPI2()
         {
+            //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
             getRCByCoordinates.CellSize = 10;
             getRCByCoordinates.Topcoordinates = new Coordinates(10, 10);
@@ -67,12 +73,14 @@ namespace TechnicalExercise.Tests.API
 
             mockTriangleRepo.Setup(a => a.AreCoordinatesformTriangle(It.IsAny<GetRCByCoordinates>())).Returns(false);
 
+            //Action
             triangleController.Validate(getRCByCoordinates);
             var response = triangleController.FetchRCByCoordinates(getRCByCoordinates);
 
             var data = response.Content.ReadAsStringAsync().Result;
             ErrorMessage error = JsonConvert.DeserializeObject<ErrorMessage>(data);
 
+            //Assert
             mockTriangleRepo.Verify(a => a.FetchRCByCoordinates(It.IsAny<GetRCByCoordinates>()), Times.Never);
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
             Assert.AreEqual("Coordinates does not form Triangle", error.Message);
@@ -80,16 +88,20 @@ namespace TechnicalExercise.Tests.API
 
         [Test]
         [Category("Negative")]
+        [Description("Validating bad request response code and null reference in FetchRCByCoordinates API")]
         public void CheckFetchRowColumnAPI3()
         {
+            //Arrange
             GetRCByCoordinates getRCByCoordinates = null;
 
+            //Action
             triangleController.Validate(getRCByCoordinates);
             var response = triangleController.FetchRCByCoordinates(getRCByCoordinates);
 
             var data = response.Content.ReadAsStringAsync().Result;
             ErrorMessage error = JsonConvert.DeserializeObject<ErrorMessage>(data);
 
+            //Assert
             mockTriangleRepo.Verify(a => a.AreCoordinatesformTriangle(It.IsAny<GetRCByCoordinates>()), Times.Never);
             mockTriangleRepo.Verify(a => a.FetchRCByCoordinates(It.IsAny<GetRCByCoordinates>()), Times.Never);
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
@@ -98,20 +110,24 @@ namespace TechnicalExercise.Tests.API
 
         [Test]
         [Category("Negative")]
+        [Description("Validating bad request response code and model state in FetchRCByCoordinates API")]
         public void CheckFetchRowColumnAPI4()
         {
+            //Arrange
             GetRCByCoordinates getRCByCoordinates = new GetRCByCoordinates();
             getRCByCoordinates.CellSize = 0;
             getRCByCoordinates.Topcoordinates = new Coordinates(10, 10);
             getRCByCoordinates.Midcoordinates = new Coordinates(10, 20);
             getRCByCoordinates.Bottomcoordinates = new Coordinates(20, 20);
 
+            //Action
             triangleController.Validate(getRCByCoordinates);
             var response = triangleController.FetchRCByCoordinates(getRCByCoordinates);
 
             var data = response.Content.ReadAsStringAsync().Result;
             ErrorMessage error = JsonConvert.DeserializeObject<ErrorMessage>(data);
 
+            //Assert
             mockTriangleRepo.Verify(a => a.AreCoordinatesformTriangle(It.IsAny<GetRCByCoordinates>()), Times.Never);
             mockTriangleRepo.Verify(a => a.FetchRCByCoordinates(It.IsAny<GetRCByCoordinates>()), Times.Never);
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);

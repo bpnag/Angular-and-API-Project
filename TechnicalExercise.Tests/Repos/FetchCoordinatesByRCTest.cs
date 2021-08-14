@@ -17,7 +17,7 @@ namespace TechnicalExercise.Tests.Repos
     {
         private Mock<IBlock> mockBlock;
         private Mock<IBlockCoordinates> mockBlockCoordinates;
-        private Mock<ITriangleCoordinates> mockEven;
+        private Mock<ITriangleCoordinates> mockTriangleCoordinates;
         private Mock<ITriangleCoordinates> mockOdd;
 
         [SetUp]
@@ -25,8 +25,7 @@ namespace TechnicalExercise.Tests.Repos
         {
             mockBlock = new Mock<IBlock>();
             mockBlockCoordinates = new Mock<IBlockCoordinates>();
-            mockEven = new Mock<ITriangleCoordinates>();
-            mockOdd = new Mock<ITriangleCoordinates>();
+            mockTriangleCoordinates = new Mock<ITriangleCoordinates>();
 
             mockBlock.Setup(a => a.TopLeftCoordinates).Returns(() => new Coordinates(10, 10));
             mockBlock.Setup(a => a.BottomLeftCoordinates).Returns(() => new Coordinates(10, 20));
@@ -47,14 +46,14 @@ namespace TechnicalExercise.Tests.Repos
             _list.Add(new Coordinates(20, 20));
 
             mockBlockCoordinates.Setup(a => a.GetBlockCoordinates(It.IsAny<CreateTriangleByRC>())).Returns(mockBlock.Object);
-            mockEven.Setup(a => a.CalculateOddTriangleCoordinates(It.IsAny<IBlock>())).Returns(_list);
+            mockTriangleCoordinates.Setup(a => a.CalculateOddTriangleCoordinates(It.IsAny<IBlock>())).Returns(_list);
 
             //Action
-            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockEven.Object);
+            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockTriangleCoordinates.Object);
             List<Coordinates> coordinates = (List<Coordinates>)triangleCoordinates.FetchCoordinatesByRC(createTriangleByRC);
 
             //Assertion
-            mockEven.Verify(a => a.CalculateEvenTriangleCoordinates(mockBlock.Object), Times.Never);
+            mockTriangleCoordinates.Verify(a => a.CalculateEvenTriangleCoordinates(mockBlock.Object), Times.Never);
             Assert.AreEqual(3, coordinates.Count);
             for (int i = 0; i < coordinates.Count; i++)
             {
@@ -77,14 +76,14 @@ namespace TechnicalExercise.Tests.Repos
             _list.Add(new Coordinates(20, 20));
 
             mockBlockCoordinates.Setup(a => a.GetBlockCoordinates(It.IsAny<CreateTriangleByRC>())).Returns(mockBlock.Object);
-            mockEven.Setup(a => a.CalculateEvenTriangleCoordinates(It.IsAny<IBlock>())).Returns(_list);
+            mockTriangleCoordinates.Setup(a => a.CalculateEvenTriangleCoordinates(It.IsAny<IBlock>())).Returns(_list);
 
             //Action
-            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockEven.Object);
+            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockTriangleCoordinates.Object);
             List<Coordinates> coordinates = (List<Coordinates>)triangleCoordinates.FetchCoordinatesByRC(createTriangleByRC);
 
             //Assertion
-            mockEven.Verify(a => a.CalculateOddTriangleCoordinates(mockBlock.Object), Times.Never);
+            mockTriangleCoordinates.Verify(a => a.CalculateOddTriangleCoordinates(mockBlock.Object), Times.Never);
             Assert.AreEqual(3, coordinates.Count);
             for(int i = 0; i < coordinates.Count; i++)
             {
@@ -100,12 +99,12 @@ namespace TechnicalExercise.Tests.Repos
         {
             //Arrange
             CreateTriangleByRC createTriangleByRC = null; ;
-            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockEven.Object);
+            ITriangle triangleCoordinates = new TriangleRepository(mockBlockCoordinates.Object, mockTriangleCoordinates.Object);
 
             //Assertion
             mockBlockCoordinates.Verify(a => a.GetBlockCoordinates(It.IsAny<CreateTriangleByRC>()), Times.Never);
-            mockEven.Verify(a => a.CalculateOddTriangleCoordinates(It.IsAny<Block>()), Times.Never);
-            mockEven.Verify(a => a.CalculateEvenTriangleCoordinates(It.IsAny<Block>()), Times.Never);
+            mockTriangleCoordinates.Verify(a => a.CalculateOddTriangleCoordinates(It.IsAny<Block>()), Times.Never);
+            mockTriangleCoordinates.Verify(a => a.CalculateEvenTriangleCoordinates(It.IsAny<Block>()), Times.Never);
             Assert.Throws<ArgumentNullException>(() => triangleCoordinates.FetchCoordinatesByRC(createTriangleByRC));
         }
 

@@ -48,12 +48,13 @@ namespace TechnicalExercise.Controllers
             {
                 if (ModelState.IsValid && getRCByCoordinates != null)
                 {
+                    //To check whether coordinates form triangle or not
                     if (this.Triangle.AreCoordinatesformTriangle(getRCByCoordinates))
                     {
                         var rowColumn = this.Triangle.FetchRCByCoordinates(getRCByCoordinates);
                         return Request.CreateResponse(HttpStatusCode.OK, rowColumn);
                     }
-                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Coordinates does not form Triangle");
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Coordinates does not form triangle w.r.t given layout");
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Invalid Input");
             }
