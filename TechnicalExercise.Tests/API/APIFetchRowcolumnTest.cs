@@ -83,7 +83,7 @@ namespace TechnicalExercise.Tests.API
             //Assert
             mockTriangleRepo.Verify(a => a.FetchRCByCoordinates(It.IsAny<GetRCByCoordinates>()), Times.Never);
             Assert.AreEqual(response.StatusCode, HttpStatusCode.BadRequest);
-            Assert.AreEqual("Coordinates does not form Triangle", error.Message);
+            Assert.AreEqual("Coordinates does not form triangle w.r.t given layout", error.Message);
         }
 
         [Test]
