@@ -23,7 +23,7 @@ I have created a ASP.NET Web API project with Angular 10 as part of my technical
 * NUnit
 
 ## Setup
-To run this project please go to "TechnicalExercise\TechnicalExercise\FClient" path in command prompt and run below command to install node modules.
+To run this project please go to "TechnicalExercise\TechnicalExercise\FClient" path in command prompt and run below command to install node modules(Otherwise you will be getting build errors in VS2019).
 
 ```
 npm install
