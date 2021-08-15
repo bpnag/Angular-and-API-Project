@@ -1,7 +1,7 @@
 # Technical Test
 
-Hi Welcome to my first *Github* project.
-I have created a ASP.NET Web API project with Angular 10 as part of my technical assesment.
+Hi **welcome to my first Github project**.
+I have created a ASP.NET Web API project with Angular 10 as part of my technical assessment.
 
 # Tasks
 * Calaculate the triangle coordinates for an image with the given row and column.
@@ -23,7 +23,7 @@ I have created a ASP.NET Web API project with Angular 10 as part of my technical
 * NUnit
 
 ## Setup
-To run this project please go to "TechnicalExercise\TechnicalExercise\FClient" path in command prompt and run below command.
+To run this project please go to "TechnicalExercise\TechnicalExercise\FClient" path in command prompt and run below command to install node modules.
 
 ```
 npm install
@@ -34,7 +34,7 @@ Once all the node modules are installed then run the project from Visual Studio 
 ## Prerequisites :
 
 * Node.js and NPM
-* Visual studio 2019 or above
+* Visual studio 2019
 
 
 
