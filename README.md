@@ -15,7 +15,7 @@ I have created a ASP.NET Web API project with Angular 10 as part of my technical
 
 ### Back End:
 * C#
-* .NET Framework 4.6
+* .NET Framework 4.7.2
 * Web API
 
 ### Testing
