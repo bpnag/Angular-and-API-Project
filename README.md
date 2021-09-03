@@ -1,7 +1,7 @@
 # Technical Test
 
 Hi **welcome to my first Github project**.
-I have created a ASP.NET Web API project with Angular 10 as part of my technical assessment.
+I have created a ASP.NET Web API project with Angular 10.
 
 # Tasks
 * Calaculate the triangle coordinates for an image with the given row and column.
