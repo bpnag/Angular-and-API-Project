@@ -1,4 +1,4 @@
-# Technical Test
+# API Project
 
 Hi **welcome to my first Github project**.
 I have created a ASP.NET Web API project with Angular 10.
